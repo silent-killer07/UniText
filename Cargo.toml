@@ -4,7 +4,7 @@ members = [
     "crates/unitext-string",
     "crates/unitext-security",
     "crates/unitext-cli"
-, "bindings/wasm"]
+, "bindings/wasm", "bindings/python", "bindings/ffi"]
 resolver = "2"
 
 [workspace.dependencies]

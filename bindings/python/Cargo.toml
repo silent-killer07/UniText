@@ -1,0 +1,15 @@
+[package]
+name = "unitext-python"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "unitext"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.21.2", features = ["extension-module"] }
+serde_json = "1.0"
+unitext-core = { path = "../../crates/unitext-core" }
+unitext-string = { path = "../../crates/unitext-string" }
+unitext-security = { path = "../../crates/unitext-security" }

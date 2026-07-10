@@ -1,0 +1,14 @@
+[package]
+name = "unitext-ffi"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "unitext"
+crate-type = ["cdylib", "staticlib"]
+
+[dependencies]
+libc = "0.2"
+unitext-core = { path = "../../crates/unitext-core" }
+unitext-string = { path = "../../crates/unitext-string" }
+unitext-security = { path = "../../crates/unitext-security" }
