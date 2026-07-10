@@ -1,0 +1,10 @@
+[package]
+name = "unitext-cli"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { workspace = true }
+unitext-core = { path = "../unitext-core" }
+unitext-string = { path = "../unitext-string" }
+unitext-security = { path = "../unitext-security" }

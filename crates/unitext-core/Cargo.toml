@@ -1,0 +1,8 @@
+[package]
+name = "unitext-core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+unicode-segmentation = { workspace = true }
+unicode-normalization = { workspace = true }
