@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniText Playground</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">◉ UniText Playground</div>
+            <div class="nav-links">
+                <a href="https://github.com/silent-killer07/UniText" target="_blank">GitHub</a>
+                <a href="#">Docs</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="input-section glass-panel">
+                <textarea id="text-input" placeholder="Paste or type any text here... try 'аpple.com' or 'Héllo 👨‍👩‍👧‍👦'"></textarea>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="analyze">Analyze</button>
+                <button class="tab-btn" data-tab="security">Security</button>
+                <button class="tab-btn" data-tab="convert">Convert</button>
+                <button class="tab-btn" data-tab="compare">Compare</button>
+            </div>
+
+            <div class="results-section glass-panel">
+                <!-- Analyze Tab -->
+                <div id="tab-analyze" class="tab-content active">
+                    <div class="stats-grid" id="analyze-stats">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div class="table-container">
+                        <table id="grapheme-table">
+                            <thead>
+                                <tr>
+                                    <th>Slot</th>
+                                    <th>Char</th>
+                                    <th>Script</th>
+                                    <th>Category</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Security Tab -->
+                <div id="tab-security" class="tab-content">
+                    <div id="security-badge" class="risk-badge">SAFE</div>
+                    <div class="security-details" id="security-details">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Convert Tab -->
+                <div id="tab-convert" class="tab-content">
+                    <div class="convert-grid">
+                        <div class="convert-card">
+                            <h3>ASCII Transliteration</h3>
+                            <div class="convert-output" id="ascii-output"></div>
+                            <div class="lossy-indicator" id="ascii-lossy"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compare Tab -->
+                <div id="tab-compare" class="tab-content">
+                    <div class="compare-inputs">
+                        <input type="text" id="compare-1" placeholder="String 1" value="apple.com">
+                        <input type="text" id="compare-2" placeholder="String 2 (Cyrillic a)" value="аpple.com">
+                    </div>
+                    <div class="compare-results" id="compare-results">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
