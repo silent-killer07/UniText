@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 unitext-core = { path = "../unitext-core" }
+unitext-security = { path = "../unitext-security" }

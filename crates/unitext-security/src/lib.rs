@@ -1,14 +1,9 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+pub mod confusables;
+pub mod homograph;
+pub mod mixed_script;
+pub mod risk_scorer;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub use confusables::{get_confusable, normalize_confusables};
+pub use homograph::visually_equal;
+pub use mixed_script::detect_mixed_script;
+pub use risk_scorer::{assess_risk, RiskLevel};
