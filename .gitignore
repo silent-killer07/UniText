@@ -1,3 +1,27 @@
+# Rust
 /target
 **/*.rs.bk
 Cargo.lock
+
+# Python Bindings
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+.venv/
+venv/
+env/
+bindings/python/target/
+
+# WASM / Node / Web Playground
+node_modules/
+dist/
+pkg/
+npm-debug.log*
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
