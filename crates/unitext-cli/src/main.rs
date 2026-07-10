@@ -18,6 +18,12 @@ enum Commands {
     Security { text: String },
     /// Compare two strings at multiple levels
     Compare { text1: String, text2: String },
+    /// Convert string to another encoding
+    Convert { 
+        text: String,
+        #[arg(long)]
+        to: String,
+    },
 }
 
 fn main() {
@@ -55,6 +61,44 @@ fn main() {
             println!("╠══════════════════════════════════════════════════════╣");
             println!("║  Byte-equal:      {}                              ║", if bytes_equal { "Yes ✅" } else { "No  ❌" });
             println!("║  Visual-equal:    {}                              ║", if visually_equal { "Yes ✅" } else { "No  ❌" });
+            println!("╚══════════════════════════════════════════════════════╝");
+        }
+        Commands::Convert { text, to } => {
+            let us = UniString::new(text);
+            let input_bytes = text.len();
+            
+            println!("╔══════════════════════════════════════════════════════╗");
+            println!("║  Encoding Conversion Report                          ║");
+            println!("╠══════════════════════════════════════════════════════╣");
+            println!("║  Input:        \"{}\"", text);
+            println!("║  Target:       {}", to.to_uppercase());
+            
+            match to.to_lowercase().as_str() {
+                "ascii" => {
+                    let (output, lossy) = us.to_ascii();
+                    println!("║  Output:       \"{}\"", output);
+                    println!("║  Lossy:        {}                              ║", if lossy { "Yes ⚠️" } else { "No  ✅" });
+                    println!("║  Input bytes:  {} (UTF-8)", input_bytes);
+                    println!("║  Output bytes: {} (ASCII)", output.len());
+                }
+                "utf8" => {
+                    let output = us.to_utf8();
+                    println!("║  Output bytes: {:?}", output);
+                    println!("║  Lossy:        No  ✅                              ║");
+                    println!("║  Input bytes:  {} (UTF-8)", input_bytes);
+                    println!("║  Output bytes: {} (UTF-8)", output.len());
+                }
+                "utf32" => {
+                    let output = us.to_utf32();
+                    println!("║  Output chars: {:?}", output);
+                    println!("║  Lossy:        No  ✅                              ║");
+                    println!("║  Input bytes:  {} (UTF-8)", input_bytes);
+                    println!("║  Output chars: {} (UTF-32 code points)", output.len());
+                }
+                _ => {
+                    println!("║  Error: Unsupported target encoding '{}'", to);
+                }
+            }
             println!("╚══════════════════════════════════════════════════════╝");
         }
     }

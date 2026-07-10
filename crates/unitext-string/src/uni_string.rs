@@ -67,6 +67,18 @@ impl UniString {
     pub fn visually_equal(a: &str, b: &str) -> bool {
         visually_equal(a, b)
     }
+
+    pub fn to_utf8(&self) -> Vec<u8> {
+        self.text_only().into_bytes()
+    }
+
+    pub fn to_utf32(&self) -> Vec<char> {
+        self.text_only().chars().collect()
+    }
+
+    pub fn to_ascii(&self) -> (String, bool) {
+        crate::convert::to_ascii(&self.text_only())
+    }
 }
 
 #[cfg(test)]
