@@ -53,6 +53,28 @@ fn main() {
 }
 ```
 
+## 💻 CLI Tool Usage
+
+UniText comes with a powerful CLI for text analysis and security scanning.
+
+```bash
+# Analyze text structure and graphemes
+cargo run -p unitext-cli -- analyze "Hello 👨‍👩‍👧‍👦 Café"
+
+# Run a security scan for homograph attacks
+cargo run -p unitext-cli -- security "аpple.com"
+```
+
+## 🌐 Web Playground
+
+Try UniText directly in your browser! The web playground uses our WASM bindings to run the core engine entirely client-side.
+
+```bash
+cd web-playground
+npx http-server . -p 8000
+```
+Then open `http://localhost:8000` in your browser.
+
 ## 📚 Documentation
 - [Architecture & Design](docs/architecture.md)
 - [CJK Variant Strategy](docs/cjk-variants.md)
