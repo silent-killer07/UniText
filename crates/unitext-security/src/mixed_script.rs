@@ -2,8 +2,8 @@ use unitext_core::grapheme_table::GraphemeTable;
 
 pub fn detect_mixed_script(table: &GraphemeTable) -> bool {
     let mut scripts = Vec::new();
-    
-    // In Phase 1 we stubbed script classification. 
+
+    // In Phase 1 we stubbed script classification.
     // For this demonstration, we'll infer script loosely from character blocks.
     for entry in &table.graphemes {
         let canonical = &entry.canonical_form;
@@ -14,7 +14,7 @@ pub fn detect_mixed_script(table: &GraphemeTable) -> bool {
             }
         }
     }
-    
+
     // If there's more than one distinct script (excluding Common/Emoji), it's mixed.
     scripts.len() > 1
 }

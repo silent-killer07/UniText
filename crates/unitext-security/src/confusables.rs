@@ -12,15 +12,15 @@ pub fn init_confusables() {
             if line.is_empty() || line.starts_with('#') {
                 continue;
             }
-            
+
             let parts: Vec<&str> = line.split(';').collect();
             if parts.len() >= 2 {
                 let source = u32::from_str_radix(parts[0].trim(), 16).ok();
                 let target = u32::from_str_radix(parts[1].trim(), 16).ok();
-                
+
                 if let (Some(sc), Some(tc)) = (
                     source.and_then(char::from_u32),
-                    target.and_then(char::from_u32)
+                    target.and_then(char::from_u32),
                 ) {
                     map.insert(sc, tc);
                 }
@@ -36,5 +36,8 @@ pub fn get_confusable(c: char) -> Option<char> {
 }
 
 pub fn normalize_confusables(input: &str) -> String {
-    input.chars().map(|c| get_confusable(c).unwrap_or(c)).collect()
+    input
+        .chars()
+        .map(|c| get_confusable(c).unwrap_or(c))
+        .collect()
 }

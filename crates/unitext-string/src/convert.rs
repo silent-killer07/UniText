@@ -70,7 +70,7 @@ mod tests {
         let (ascii, lossy) = to_ascii("Straße");
         assert_eq!(ascii, "Strasse");
         assert!(lossy);
-        
+
         let (ascii, lossy) = to_ascii("👨‍👩‍👧‍👦");
         assert_eq!(ascii, "???????");
         assert!(lossy);

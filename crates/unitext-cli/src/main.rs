@@ -19,7 +19,7 @@ enum Commands {
     /// Compare two strings at multiple levels
     Compare { text1: String, text2: String },
     /// Convert string to another encoding
-    Convert { 
+    Convert {
         text: String,
         #[arg(long)]
         to: String,
@@ -50,7 +50,10 @@ fn main() {
             println!("╔══════════════════════════════════════════════════════╗");
             println!("║  SECURITY ALERT                                      ║");
             println!("╠══════════════════════════════════════════════════════╣");
-            println!("║  Risk Level:    {}                              ║", if safe { "NONE ✅" } else { "HIGH 🔴" });
+            println!(
+                "║  Risk Level:    {}                              ║",
+                if safe { "NONE ✅" } else { "HIGH 🔴" }
+            );
             println!("╚══════════════════════════════════════════════════════╝");
         }
         Commands::Compare { text1, text2 } => {
@@ -59,25 +62,34 @@ fn main() {
             println!("╔══════════════════════════════════════════════════════╗");
             println!("║  String Comparison Report                            ║");
             println!("╠══════════════════════════════════════════════════════╣");
-            println!("║  Byte-equal:      {}                              ║", if bytes_equal { "Yes ✅" } else { "No  ❌" });
-            println!("║  Visual-equal:    {}                              ║", if visually_equal { "Yes ✅" } else { "No  ❌" });
+            println!(
+                "║  Byte-equal:      {}                              ║",
+                if bytes_equal { "Yes ✅" } else { "No  ❌" }
+            );
+            println!(
+                "║  Visual-equal:    {}                              ║",
+                if visually_equal { "Yes ✅" } else { "No  ❌" }
+            );
             println!("╚══════════════════════════════════════════════════════╝");
         }
         Commands::Convert { text, to } => {
             let us = UniString::new(text);
             let input_bytes = text.len();
-            
+
             println!("╔══════════════════════════════════════════════════════╗");
             println!("║  Encoding Conversion Report                          ║");
             println!("╠══════════════════════════════════════════════════════╣");
             println!("║  Input:        \"{}\"", text);
             println!("║  Target:       {}", to.to_uppercase());
-            
+
             match to.to_lowercase().as_str() {
                 "ascii" => {
                     let (output, lossy) = us.to_ascii();
                     println!("║  Output:       \"{}\"", output);
-                    println!("║  Lossy:        {}                              ║", if lossy { "Yes ⚠️" } else { "No  ✅" });
+                    println!(
+                        "║  Lossy:        {}                              ║",
+                        if lossy { "Yes ⚠️" } else { "No  ✅" }
+                    );
                     println!("║  Input bytes:  {} (UTF-8)", input_bytes);
                     println!("║  Output bytes: {} (ASCII)", output.len());
                 }

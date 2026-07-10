@@ -1,6 +1,6 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use unitext_string::UniString;
 use unitext_security::visually_equal;
+use unitext_string::UniString;
 
 fn bench_uni_string_creation(c: &mut Criterion) {
     let text = "Hello 👨‍👩‍👧‍👦 Café";

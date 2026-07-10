@@ -1,6 +1,6 @@
 use unitext_core::grapheme_table::GraphemeTable;
 use unitext_core::normalizer::Normalizer;
-use unitext_security::{assess_risk, visually_equal, RiskLevel};
+use unitext_security::{RiskLevel, assess_risk, visually_equal};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct UniString {
@@ -89,7 +89,7 @@ mod tests {
     fn test_uni_string_length() {
         let text = UniString::new("hello");
         assert_eq!(text.length(), 5);
-        
+
         let emoji = UniString::new("👨‍👩‍👧‍👦");
         assert_eq!(emoji.length(), 1);
     }

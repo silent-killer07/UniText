@@ -22,7 +22,19 @@ fn main() {
     let invalid_user = "cool_dеv99"; // Cyrillic 'e'
     let emoji_user = "👨‍👩‍👧‍👦_fan";
 
-    println!("Registering {}: {:?}", valid_user, validate_username(valid_user));
-    println!("Registering {}: {:?}", invalid_user, validate_username(invalid_user));
-    println!("Registering {}: {:?}", emoji_user, validate_username(emoji_user));
+    println!(
+        "Registering {}: {:?}",
+        valid_user,
+        validate_username(valid_user)
+    );
+    println!(
+        "Registering {}: {:?}",
+        invalid_user,
+        validate_username(invalid_user)
+    );
+    println!(
+        "Registering {}: {:?}",
+        emoji_user,
+        validate_username(emoji_user)
+    );
 }

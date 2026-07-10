@@ -1,15 +1,15 @@
 use pyo3::prelude::*;
-use unitext_string::UniString;
+use serde_json::json;
 use unitext_core::normalizer::Normalizer;
 use unitext_security::{assess_risk, RiskLevel};
-use serde_json::json;
+use unitext_string::UniString;
 
 /// Analyzes the text and returns a JSON string with the analysis results.
 #[pyfunction]
 fn analyze(text: &str) -> PyResult<String> {
     let table = Normalizer::process(text);
     let mut graphemes = Vec::new();
-    
+
     let mut dominant_script = "Unknown".to_string();
     let mut is_mixed = false;
     let mut script_counts = std::collections::HashMap::new();
@@ -20,7 +20,7 @@ fn analyze(text: &str) -> PyResult<String> {
         } else {
             g.canonical_form.clone()
         };
-        
+
         if g.script != "Unknown" && g.script != "Common" && g.script != "Inherited" {
             *script_counts.entry(g.script.clone()).or_insert(0) += 1;
         }
@@ -32,7 +32,7 @@ fn analyze(text: &str) -> PyResult<String> {
             "category": g.category,
         }));
     }
-    
+
     if script_counts.len() > 1 {
         is_mixed = true;
     }
@@ -49,7 +49,7 @@ fn analyze(text: &str) -> PyResult<String> {
         "isMixedScript": is_mixed,
         "graphemeBreakdown": graphemes
     });
-    
+
     Ok(result.to_string())
 }
 
@@ -57,27 +57,27 @@ fn analyze(text: &str) -> PyResult<String> {
 #[pyfunction]
 fn is_safe(text: &str) -> PyResult<String> {
     let table = Normalizer::process(text);
-    
+
     let mut text_only = String::new();
     for g in &table.graphemes {
         text_only.push_str(&g.canonical_form);
     }
-    
+
     let risk = assess_risk(&text_only, &table);
-    
+
     let (safe, score, level) = match risk {
         RiskLevel::None => (true, 0, "None"),
         RiskLevel::Low => (true, 25, "Low"),
         RiskLevel::Medium => (false, 75, "Medium"),
         RiskLevel::High => (false, 100, "High"),
     };
-    
+
     let result = json!({
         "safe": safe,
         "riskScore": score,
         "level": level
     });
-    
+
     Ok(result.to_string())
 }
 

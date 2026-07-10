@@ -1,6 +1,6 @@
-use unitext_core::grapheme_table::GraphemeTable;
-use crate::mixed_script::detect_mixed_script;
 use crate::confusables::normalize_confusables;
+use crate::mixed_script::detect_mixed_script;
+use unitext_core::grapheme_table::GraphemeTable;
 
 #[derive(Debug, PartialEq)]
 pub enum RiskLevel {
@@ -14,7 +14,7 @@ pub fn assess_risk(original: &str, table: &GraphemeTable) -> RiskLevel {
     let mixed = detect_mixed_script(table);
     let normalized = normalize_confusables(original);
     let has_confusables = original != normalized;
-    
+
     if mixed && has_confusables {
         RiskLevel::High
     } else if mixed || has_confusables {
