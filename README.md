@@ -3,8 +3,7 @@
 > A Next-Generation Text Encoding Abstraction System.
 
 [![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](LICENSE-MIT)
-[![Crates.io](https://img.shields.io/crates/v/unitext-core.svg)](https://crates.io/crates/unitext-core)
-[![Documentation](https://docs.rs/unitext-core/badge.svg)](https://docs.rs/unitext-core)
+[![Build Status](https://github.com/silent-killer07/UniText/actions/workflows/rust.yml/badge.svg)](https://github.com/silent-killer07/UniText/actions/workflows/rust.yml)
 
 Unicode is great, but it has flaws: normalization chaos, homograph attacks (e.g., Cyrillic `а` vs Latin `a`), and invisible grapheme boundaries. **UniText** solves this by providing a grapheme-first, security-native text engine.
 
