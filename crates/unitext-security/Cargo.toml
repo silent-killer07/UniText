@@ -2,6 +2,11 @@
 name = "unitext-security"
 version = "0.1.0"
 edition = "2024"
+authors = ["Divya Jaiswal"]
+description = "A Next-Generation Text Encoding Abstraction System"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/silent-killer07/UniText"
+keywords = ["unicode", "text", "security", "grapheme"]
 
 [dependencies]
 unitext-core = { path = "../unitext-core" }
