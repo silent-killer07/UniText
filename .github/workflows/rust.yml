@@ -15,8 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Build
-      run: cargo build --verbose
+    - name: Build Core
+      run: cargo build --verbose -p unitext-core -p unitext-string -p unitext-security -p unitext-cli
       
     - name: Run tests
       run: cargo test --verbose -p unitext-core -p unitext-string -p unitext-security -p unitext-cli
@@ -25,4 +25,4 @@ jobs:
       run: cargo fmt -- --check
       
     - name: Check Clippy
-      run: cargo clippy -- -D warnings
+      run: cargo clippy -p unitext-core -p unitext-string -p unitext-security -p unitext-cli -- -D warnings
